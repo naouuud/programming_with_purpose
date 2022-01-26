@@ -49,13 +49,12 @@ public class Birthday {
             fraction[i] = (double) cumulative[i] / trials;
         }
         // print persons and count
-        System.out.println("1      0      0.0");
+        System.out.printf("%-6d %-8d %-12.1f%n", 1, count[0], fraction[0]);
         boolean stopprint = false;
         while (!stopprint) {
             for (int p = 1; p < birthdays.length; p++) {
-                if (fraction[p - 1] <= 0.5) {
-                    System.out.print(p + 1 + "      " + count[p] + "      " + fraction[p]);
-                    System.out.println();
+                if (fraction[p - 1] < 0.5) {
+                    System.out.printf("%-6d %-8d %-12f%n", p + 1, count[p], fraction[p]);
                 }
                 else {
                     stopprint = true;
