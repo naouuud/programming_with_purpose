@@ -4,7 +4,13 @@
  *  Last modified:     October 16, 1842
  **************************************************************************** */
 
-public class Birthday {
+/* *****************************************************************************
+ *  Name:              Ada Lovelace
+ *  Coursera User ID:  123456
+ *  Last modified:     October 16, 1842
+ **************************************************************************** */
+
+public class BirthdayAlt {
     public static void main(String[] args) {
         int n = Integer.parseInt(args[0]);
         int trials = Integer.parseInt(args[1]);
@@ -19,22 +25,20 @@ public class Birthday {
                 birthdays[j] = (int) (Math.random() * n);
             }
             // checking for duplicates
-            int j = 1;
-            boolean breakbigloop = false;
-            while (!breakbigloop && j < birthdays.length) {
-                int k = 0;
-                boolean breakloop = false;
-                while (!breakloop && k < j) {
-                    if (birthdays[k] != birthdays[j]) {
-                        k += 1;
-                    }
-                    else {
-                        count[j] += 1;
-                        breakloop = true;
-                        breakbigloop = true;
+            for (int j = 1; j < birthdays.length; j++) {
+                boolean breakbigloop = false;
+                while (!breakbigloop) {
+                    for (int k = 0; k < j; k++) {
+                        boolean breakloop = false;
+                        while (!breakloop) {
+                            if (birthdays[k] == birthdays[j]) {
+                                count[j] += 1;
+                            }
+                            breakloop = true;
+                            breakbigloop = true;
+                        }
                     }
                 }
-                j += 1;
             }
         }
         // populate cumulative and fraction
