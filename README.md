@@ -1,2 +1,3 @@
 # programming_with_purpose
-Assignments from Coursera MOOC "Programming with a Purpose" (Princeton)
+ Assignments completed for Princeton MOOC "Programming with a Purpose" on Coursera, plus some extra.
+
