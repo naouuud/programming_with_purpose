@@ -3,7 +3,7 @@
  *  Coursera User ID:  123456
  *  Last modified:     October 16, 1842
  **************************************************************************** */
-
+// alternative version of the program Birthday.java focusing on while loops
 public class Birthday {
     public static void main(String[] args) {
         int n = Integer.parseInt(args[0]);
@@ -19,32 +19,46 @@ public class Birthday {
                 birthdays[j] = (int) (Math.random() * n);
             }
             // checking for duplicates
-            boolean breakloop = false;
-            for (int j = 1; !breakloop && j < birthdays.length; j++) {
-                for (int k = 0; !breakloop && k < j; k++) {
-                    if (birthdays[k] == birthdays[j]) {
+            int j = 1;
+            boolean breakbigloop = false;
+            while (!breakbigloop && j < birthdays.length) {
+                int k = 0;
+                boolean breakloop = false;
+                while (!breakloop && k < j) {
+                    if (birthdays[k] != birthdays[j]) {
+                        k += 1;
+                    }
+                    else {
                         count[j] += 1;
                         breakloop = true;
+                        breakbigloop = true;
                     }
                 }
+                j += 1;
             }
         }
         // populate cumulative and fraction
-        for (int i = 1; i < birthdays.length; i++) {
+        for (
+                int i = 1;
+                i < birthdays.length; i++) {
             cumulative[i] = cumulative[i - 1] + count[i];
         }
-        for (int i = 0; i < birthdays.length; i++) {
+        for (
+                int i = 0;
+                i < birthdays.length; i++) {
             fraction[i] = (double) cumulative[i] / trials;
         }
-        // print persons count and fraction
+        // print persons and count
         System.out.printf("%-6d %-8d %-12.1f%n", 1, count[0], fraction[0]);
         boolean stopprint = false;
-        for (int p = 1; !stopprint && p < birthdays.length; p++) {
-            if (fraction[p - 1] < 0.5) {
-                System.out.printf("%-6d %-8d %-12f%n", p + 1, count[p], fraction[p]);
-            }
-            else {
-                stopprint = true;
+        while (!stopprint) {
+            for (int p = 1; p < birthdays.length; p++) {
+                if (fraction[p - 1] < 0.5) {
+                    System.out.printf("%-6d %-8d %-12f%n", p + 1, count[p], fraction[p]);
+                }
+                else {
+                    stopprint = true;
+                }
             }
         }
     }
