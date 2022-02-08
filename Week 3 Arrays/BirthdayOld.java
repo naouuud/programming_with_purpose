@@ -9,9 +9,9 @@ public class Birthday {
         int n = Integer.parseInt(args[0]);
         int trials = Integer.parseInt(args[1]);
         int[] birthdays = new int[n];
-        int[] count = new int[birthdays.length];
-        int[] cumulative = new int[birthdays.length];
-        double[] fraction = new double[birthdays.length];
+        int[] count = new int[10 * n];
+        int[] cumulative = new int[count.length];
+        double[] fraction = new double[count.length];
         // set number of trials
         for (int i = 0; i < trials; i++) {
             // populate array birthdays
@@ -30,10 +30,10 @@ public class Birthday {
             }
         }
         // populate cumulative and fraction
-        for (int i = 1; i < birthdays.length; i++) {
+        for (int i = 1; i < count.length; i++) {
             cumulative[i] = cumulative[i - 1] + count[i];
         }
-        for (int i = 0; i < birthdays.length; i++) {
+        for (int i = 0; i < count.length; i++) {
             fraction[i] = (double) cumulative[i] / trials;
         }
         // print persons count and fraction
