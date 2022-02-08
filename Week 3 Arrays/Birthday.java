@@ -39,11 +39,9 @@ public class Birthday {
         // print persons count and fraction
         System.out.printf("%-6d %-8d %-12.1f%n", 1, count[0], fraction[0]);
         boolean stopprint = false;
-        for (int p = 1; !stopprint && p < birthdays.length; p++) {
-            if (fraction[p - 1] < 0.5) {
-                System.out.printf("%-6d %-8d %-12f%n", p + 1, count[p], fraction[p]);
-            }
-            else {
+        for (int p = 1; !stopprint; p++) {
+            System.out.printf("%-6d %-8d %-12f%n", p + 1, count[p], fraction[p]);
+            if (fraction[p] >= 0.5) {
                 stopprint = true;
             }
         }
