@@ -14,7 +14,7 @@ public class Minesweeper {
         for (int i = 0; i < m && mines < k; i++) {
             for (int j = 0; j < n && mines < k; j++) {
                 double r = Math.random();
-                if (r < 1.04 * ((double) k / ((double) m * (double) n))) {
+                if (r < (double) k / ((double) m * (double) n)) {
                     grid[i][j] = 101;
                     mines += 1;
                 }
@@ -34,60 +34,92 @@ public class Minesweeper {
                 }
             }
         }
-        if (grid[0][0] > 100) {
-            grid[0][1] += 1;
-            grid[1][0] += 1;
-            grid[1][1] += 1;
-        }
-        if (grid[m - 1][0] > 100) {
-            grid[m - 1][1] += 1;
-            grid[m - 2][0] += 1;
-            grid[m - 2][1] += 1;
-        }
-        if (grid[0][n - 1] > 100) {
-            grid[0][n - 2] += 1;
-            grid[1][n - 1] += 1;
-            grid[1][n - 2] += 1;
-        }
-        if (grid[m - 1][n - 1] > 100) {
-            grid[m - 1][n - 2] += 1;
-            grid[m - 2][m - 2] += 1;
-            grid[m - 2][n - 2] += 1;
-        }
-        for (int i = 1; i < n - 1; i++) {
-            if (grid[0][i] > 100) {
-                grid[0][i + 1] += 1;
-                grid[0][i - 1] += 1;
-                grid[1][i] += 1;
-                grid[1][i + 1] += 1;
-                grid[1][i - 1] += 1;
+        if (m > 1 && n > 1) {
+            if (grid[0][0] > 100) {
+                grid[0][1] += 1;
+                grid[1][0] += 1;
+                grid[1][1] += 1;
+            }
+            if (grid[m - 1][0] > 100) {
+                grid[m - 1][1] += 1;
+                grid[m - 2][0] += 1;
+                grid[m - 2][1] += 1;
+            }
+            if (grid[0][n - 1] > 100) {
+                grid[0][n - 2] += 1;
+                grid[1][n - 1] += 1;
+                grid[1][n - 2] += 1;
+            }
+            if (grid[m - 1][n - 1] > 100) {
+                grid[m - 1][n - 2] += 1;
+                grid[m - 2][n - 1] += 1;
+                grid[m - 2][n - 2] += 1;
+            }
+            for (int i = 1; i < n - 1; i++) {
+                if (grid[0][i] > 100) {
+                    grid[0][i + 1] += 1;
+                    grid[0][i - 1] += 1;
+                    grid[1][i] += 1;
+                    grid[1][i + 1] += 1;
+                    grid[1][i - 1] += 1;
+                }
+            }
+            for (int i = 1; i < n - 1; i++) {
+                if (grid[m - 1][i] > 100) {
+                    grid[m - 1][i + 1] += 1;
+                    grid[m - 1][i - 1] += 1;
+                    grid[m - 2][i] += 1;
+                    grid[m - 2][i + 1] += 1;
+                    grid[m - 2][i - 1] += 1;
+                }
+            }
+            for (int i = 1; i < m - 1; i++) {
+                if (grid[i][0] > 100) {
+                    grid[i + 1][0] += 1;
+                    grid[i - 1][0] += 1;
+                    grid[i][1] += 1;
+                    grid[i + 1][1] += 1;
+                    grid[i - 1][1] += 1;
+                }
+            }
+            for (int i = 1; i < m - 1; i++) {
+                if (grid[i][n - 1] > 100) {
+                    grid[i + 1][n - 1] += 1;
+                    grid[i - 1][n - 1] += 1;
+                    grid[i][n - 2] += 1;
+                    grid[i + 1][n - 2] += 1;
+                    grid[i - 1][n - 2] += 1;
+                }
             }
         }
-        for (int i = 1; i < n - 1; i++) {
-            if (grid[m - 1][i] > 100) {
-                grid[m - 1][i + 1] += 1;
-                grid[m - 1][i - 1] += 1;
-                grid[m - 2][i] += 1;
-                grid[m - 2][i + 1] += 1;
-                grid[m - 2][i - 1] += 1;
+        else {
+            if (m == 1) {
+                for (int i = 1; i < n - 1; i++) {
+                    if (grid[0][i] > 100) {
+                        grid[0][i + 1] += 1;
+                        grid[0][i - 1] += 1;
+                    }
+                }
+                if (grid[0][0] > 100) {
+                    grid[0][1] += 1;
+                }
+                if (grid[0][n - 1] > 100) {
+                    grid[0][n - 2] += 1;
+                }
             }
-        }
-        for (int i = 1; i < m - 1; i++) {
-            if (grid[i][0] > 100) {
-                grid[i + 1][0] += 1;
-                grid[i - 1][0] += 1;
-                grid[i][1] += 1;
-                grid[i + 1][1] += 1;
-                grid[i - 1][1] += 1;
-            }
-        }
-        for (int i = 1; i < m - 1; i++) {
-            if (grid[i][n - 1] > 100) {
-                grid[i + 1][n - 1] += 1;
-                grid[i - 1][n - 1] += 1;
-                grid[i][n - 2] += 1;
-                grid[i + 1][n - 2] += 1;
-                grid[i - 1][n - 2] += 1;
+            if (n == 1) {
+                for (int i = 1; i < m - 1; i++) {
+                    if (grid[i][0] > 100) {
+                        grid[i + 1][0] += 1;
+                        grid[i - 1][0] += 1;
+                    }
+                }
+                if (grid[0][0] > 100) {
+                    grid[1][0] += 1;
+                }
+                if (grid[m - 1][0] > 100) {
+                    grid[m - 2][0] += 1;
+                }
             }
         }
         for (int i = 0; i < m; i++) {
